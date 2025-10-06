@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Odyssey | Dhron Patel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS variables for easy theme management */
+        :root {
+            --dark-bg: #121212;
+            --primary-card-bg: #1e1e1e;
+            --light-text: #e0e0e0;
+            --secondary-text: #a0a0a0;
+            --border-color: #333;
+
+            --future1-accent: #00ff99; /* Electric Green */
+            --future2-accent: #ff00ff; /* Neon Magenta */
+            --future3-accent: #ffd700; /* Gold */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--light-text);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #0a0a0a; /* Simple, very dark background */
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem); /* Made title larger */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--secondary-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Futures Section */
+        .future-article {
+            background: var(--primary-card-bg);
+            margin: 0 auto 5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .future-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .future-content {
+            padding: 2.5rem;
+        }
+        
+        .future-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .future-content .tagline {
+            font-style: italic;
+            font-weight: 300;
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .future-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+        }
+        
+        .future-timeline {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .future-timeline li {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .future-timeline li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .future-timeline strong {
+            color: var(--light-text);
+        }
+        
+        /* Accent Colors */
+        #future1 { border-color: var(--future1-accent); }
+        #future1 h2, #future1 .future-timeline li::before, #future1 h4 { color: var(--future1-accent); }
+        
+        #future2 { border-color: var(--future2-accent); }
+        #future2 h2, #future2 .future-timeline li::before, #future2 h4 { color: var(--future2-accent); }
+
+        #future3 { border-color: var(--future3-accent); }
+        #future3 h2, #future3 .future-timeline li::before, #future3 h4 { color: var(--future3-accent); }
+
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Fade-in Animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simpler nav for mobile */
+            body { font-size: 15px; }
+            .container { padding: 0 1rem; }
+            .future-content { padding: 1.5rem; }
+            .future-content h2 { font-size: 1.8rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="container">
+            <a href="#" class="nav-logo">Dhron Patel</a>
+            <ul class="nav-links">
+                <li><a href="#future1">The Current Plan</a></li>
+                <li><a href="#future2">The Secret Wish</a></li>
+                <li><a href="#future3">The Limitless Path</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>The Odyssey</h1>
+            <p>One person, three possible journeys. An exploration of future paths driven by a passion for technology, creativity, and discovery.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Future 1: The Ethical Hacker -->
+        <section id="future1" class="future-article fade-in-section">
+            <div class="future-content">
+                <h2>Future 1: The Current Plan</h2>
+                <span class="tagline">The Ethical Hacker</span>
+                <p>This is the path I'm on right now. My focus is on the offensive side of cybersecurity—learning to think like an attacker to build better defenses. This is the plan I'm actively pursuing.</p>
+
+                <h4>The Degree</h4>
+                <p>I will complete my <strong>Bachelor of Business Administration (BBA) in Cybersecurity</strong> from UTSA. I'll supplement this with hands-on certifications like the Offensive Security Certified Professional (OSCP).</p>
+
+                <h4>Career Trajectory</h4>
+                <ul class="future-timeline">
+                    <li><strong>Starting Career (2 Years):</strong> I'll start as a <strong>Penetration Tester</strong> or Junior Security Consultant at a specialized cybersecurity firm. My job will be to legally hack into client systems to find vulnerabilities, working as part of a "red team."</li>
+                    <li><strong>5 Years Post-Graduation:</strong> I aim to be a <strong>Senior Penetration Tester or Red Team Lead</strong>. I would be designing and leading complex hacking simulations against large corporations, testing their defenses against sophisticated attacks.</li>
+                    <li><strong>10 Years Post-Graduation:</strong> The goal is to found my own firm specializing in <strong>offensive security services</strong>. We would provide elite penetration testing, red teaming, and vulnerability research for top-tier clients, building a reputation as experts in the field.</li>
+                </ul>
+
+                <h4>Holistic Life</h4>
+                <ul class="future-timeline">
+                    <li><strong>Hobbies:</strong> My hobbies directly fuel my career: participating in bug bounty programs, competing in Capture The Flag (CTF) hacking competitions, and building a custom home lab to test exploits.</li>
+                    <li><strong>Living Situation:</strong> I'll live in a city apartment close to a tech hub. By year 10, I'd hope to own a home with a secure, high-tech network and a dedicated lab for my work and hobbies.</li>
+                    <li><strong>Relationships:</strong> I'll build a strong network within the hacking community. My family will be my anchor, and I'll maintain close friendships with people who understand the demanding, high-stakes nature of my work.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Future 2: The Game Developer & Entrepreneur -->
+        <section id="future2" class="future-article fade-in-section">
+            <div class="future-content">
+                <h2>Future 2: The Secret Wish</h2>
+                <span class="tagline">The Game Developer & Entrepreneur</span>
+                <p>If the structured world of cybersecurity wasn't the right fit, I would pursue my passion for creating interactive worlds. This path merges my creative drive with my entrepreneurial spirit.</p>
+
+                <h4>The Degree</h4>
+                <p>I would switch to a <strong>Bachelor of Science in Computer Science</strong>, taking business and marketing classes as electives to prepare for my long-term goal of starting my own company.</p>
+
+                <h4>Career Trajectory</h4>
+                <ul class="future-timeline">
+                    <li><strong>Starting Career (2 Years):</strong> I would work as a <strong>Junior Programmer</strong> at an indie game studio to learn the ropes of game production and build a professional network.</li>
+                    <li><strong>5 Years Post-Graduation:</strong> After shipping a title and gaining experience, I would begin laying the groundwork for my own business. This involves creating a business plan, developing a prototype for my own game, and seeking funding.</li>
+                    <li><strong>10 Years Post-Graduation:</strong> I would be the <strong>founder and director of my own indie game studio</strong>. My business classes would be essential as I manage the company, lead the creative vision of our projects, and build a sustainable business doing what I love.</li>
+                </ul>
+
+                <h4>Holistic Life</h4>
+                <ul class="future-timeline">
+                    <li><strong>Hobbies:</strong> I'll be deeply involved in the gaming community, analyzing game design, attending conventions, and networking with other developers.</li>
+                    <li><strong>Living Situation:</strong> The early years would be about living frugally to save capital for the business. By year 10, success would mean a comfortable home that also serves as a creative workspace.</li>
+                    <li><strong>Relationships:</strong> My social and professional circles would merge, filled with other creatives and entrepreneurs. These relationships, built on shared passion and trust, would be the foundation of my business.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Future 3: The Filmmaker -->
+        <section id="future3" class="future-article fade-in-section">
+            <div class="future-content">
+                <h2>Future 3: The Limitless Path</h2>
+                <span class="tagline">The Filmmaker</span>
+                <p>With no limits, I would pursue the art of storytelling through film. My goal would be to create intelligent, thought-provoking movies that blend my interests in technology and thrilling narratives.</p>
+
+                <h4>The Degree</h4>
+                <p>I would pursue a <strong>Master of Fine Arts (MFA) in Film Production</strong> from a world-class film school like USC or NYU to master the craft of directing and screenwriting.</p>
+
+                <h4>Career Trajectory</h4>
+                <ul class="future-timeline">
+                    <li><strong>Starting Out (2 Years):</strong> I would write and direct several professionally produced short films. With unlimited funds, I could hire experienced crews and actors to build a stunning portfolio and gain entry into major festivals like Sundance.</li>
+                    <li><strong>5 Years In:</strong> I would establish my own production company and direct my <strong>first feature film</strong>. It would be a crime thriller with a strong cybersecurity or tech element, allowing me to weave my passions together.</li>
+                    <li><strong>10 Years In:</strong> I would be an established <strong>writer and director</strong>. I would use my production company not only for my own projects but also to fund and mentor new, diverse filmmakers with unique stories to tell, contributing to the future of the industry.</li>
+                </ul>
+
+                <h4>Holistic Life</h4>
+                <ul class="future-timeline">
+                    <li><strong>Hobbies:</strong> My life would be consumed by film: watching and deconstructing classics, writing screenplays, photography, and traveling the world for inspiration and filming locations.</li>
+                    <li><strong>Living Situation:</strong> I'd have a home in a creative hub like Los Angeles but spend much of my time on location for film shoots and attending international film festivals.</li>
+                    <li><strong>Relationships:</strong> My world would be filled with other artists—writers, cinematographers, and actors. My family would be my crucial link to life outside the intense "bubble" of the film industry.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Dhron Patel. A school project exploring the paths ahead.</p>
+    </footer>
+
+    <script>
+        // Simple scroll animation to make sections fade in
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
